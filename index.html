@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive landing page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            padding-top: 70px;
+        }
+        .logo {
+            height: 35px;
+            width: auto;
+            margin-right: 10px;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+        }
+        .ahover {
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+        }
+        .ahover:hover {
+            color: #007bff;
+        }
+        .ahover::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            left: 0;
+            bottom: 0;
+            background-color: #007bff;
+            transition: width 0.3s;
+        }
+        .ahover:hover::after {
+            width: 100%;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 1.5rem;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            flex-wrap: wrap;
+        }
+        .navbar.scrolled {
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        .menu-icon {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        #menu-toggle {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .nav-options, .nav-buttons {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                animation: fadeIn 0.3s ease-in-out forwards;
+            }
+            #menu-toggle:checked ~ .nav-options,
+            #menu-toggle:checked ~ .nav-buttons {
+                display: flex;
+            }
+            .menu-icon {
+                display: block;
+            }
+        }
+        .gradient-background {
+            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            color: white;
+            padding: 80px 0 40px;
+        }
+        .hero-txt h1 span {
+            color: #ffc107;
+        }
+        .highlight-text {
+            font-weight: bold;
+            font-size: 2.8rem;
+            text-align: center;
+            margin: 30px 0;
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #fff, 0 0 20px #007bff;
+            }
+            to {
+                text-shadow: 0 0 20px #ffc107, 0 0 30px #007bff;
+            }
+        }
+        .hero-sec {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding-top: 30px;
+        }
+        .hero-img {
+            display: none;
+        }
+        @keyframes float {
+            0% { transform: translatey(0px); }
+            50% { transform: translatey(-10px); }
+            100% { transform: translatey(0px); }
+        }
+        .parallax-section {
+            background: url('images/hero-image.png') no-repeat center center fixed;
+            background-size: cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .parallax-section h2 {
+            font-size: 3rem;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-up.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar" id="main-navbar">
+        <div class="nav-logo">
+            <!-- Logo removed -->
+        </div>
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="menu-icon">☰</label>
+        <div class="nav-options">
+            <a class="ahover" href="#">Home</a>
+            <a class="ahover" href="#">Verify</a>
+            <a class="ahover" href="#">For Business</a>
+        </div>
+        <div class="nav-buttons">
+            <button class="btn btn-outline-primary me-2">Apply</button>
+            <button class="btn btn-primary">Login</button>
+        </div>
+    </div>
+
+    <section id="title" class="gradient-background">
+        <div class="hero-sec container fade-up">
+            <div class="hero-txt container">
+                <h1 class="text-center">Crafting Success through <span>Technology</span></h1>
+                <p class="highlight-text">SkillCraft Technology</p>
+                <p class="text-center">At SkillCraft Technology, we believe in the power of skills to shape futures. We are not just a company; we are craftsmen of talent, architects of opportunity, and builders of tomorrow. Through our comprehensive suite of services, we empower students to hone their skills, secure valuable internships, and embark on fulfilling career journeys.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="parallax-section fade-up">
+        <h2>Empowering Future Talent</h2>
+    </section>
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('main-navbar');
+            if (window.scrollY > 20) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
